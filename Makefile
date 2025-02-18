@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := all
-.PHONY: all fmt build-nixos
+.PHONY: all fmt build-nixos build-installer gen
 
 NIX_CMD  ?= nix --experimental-features 'nix-command flakes'
 HOSTNAME ?= nixos
@@ -15,3 +15,6 @@ build-nixos:
 
 build-installer:
 	(${NIX_CMD} build '.#installer')
+
+gen:
+	(mkdir -p gen/ && ./scripts/vsc-ext.sh > gen/vsc.nix)

@@ -1,6 +1,7 @@
 {
   nixpkgs,
   disko,
+  home-manager,
 }: {
   nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
@@ -8,9 +9,10 @@
       disko.nixosModules.disko
       ./disks.nix
 
-      ./gen/configuration.nix
-      ./gen/hardware-configuration.nix
+      ./nixos/gen/configuration.nix
+      ./nixos/gen/hardware-configuration.nix
 
+      home-manager.nixosModules.home-manager
       ./nixos/configuration.nix
     ];
   };

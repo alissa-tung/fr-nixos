@@ -14,6 +14,11 @@
       url = "github:nix-community/nixos-generators";
       inputs = {nixpkgs.follows = "nixpkgs";};
     };
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -22,6 +27,7 @@
     flake-utils,
     disko,
     nixos-generators,
+    home-manager,
   }:
     flake-utils.lib.eachDefaultSystem (
       system: let
@@ -42,6 +48,6 @@
       }
     )
     // import ./fr-nixos.nix {
-      inherit nixpkgs disko;
+      inherit nixpkgs disko home-manager;
     };
 }

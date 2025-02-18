@@ -13,9 +13,9 @@ jobs:
         with:
           extra-conf: |
             accept-flake-config = true
-      - uses: jlumbroso/free-disk-space@main
-        with:
-          tool-cache: true
+      # - uses: jlumbroso/free-disk-space@main
+      #   with:
+      #     tool-cache: true
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: DeterminateSystems/flake-checker-action@main
       - run: |

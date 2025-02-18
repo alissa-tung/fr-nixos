@@ -28,7 +28,6 @@
   programs.chromium.enable = true;
   programs.steam.enable = true;
   environment.systemPackages = with pkgs; [
-    kitty
     elan
     git
     gnumake
@@ -43,7 +42,20 @@
     nix-inspect
     wechat-uos
     qq
+
+    (import ../pkgs/vscode.nix {inherit pkgs;})
   ];
+
+  home-manager.users.fr = {
+    home.stateVersion = "25.05";
+    programs.kitty = {
+      enable = true;
+      settings = {
+        shell = "zsh";
+        enable_audio_bell = "no";
+      };
+    };
+  };
 
   programs.zsh = {
     enable = true;

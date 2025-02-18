@@ -1,0 +1,7 @@
+sainnhe.everforest
+rust-lang.rust-analyzer
+tamasfe.even-better-toml
+leanprover.lean4
+redhat.vscode-yaml
+ms-vscode-remote.remote-ssh
+llvm-vs-code-extensions.vscode-clangd
