@@ -1,0 +1,29 @@
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            accept-flake-config = true
+      - uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/flake-checker-action@main
+      - run: |
+          nix develop --command make build-installer
+          mv result result-installer
+          nix develop --command make build-nixos
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: result-installer
+          path: ./result-installer
